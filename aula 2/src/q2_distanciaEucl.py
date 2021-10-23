@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Oct 23 10:03:02 2021
-
-@author: Estevao
-"""
-
 import numpy as np
 
 def calcDistEucl(ponto1, listaPontos):     

@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Oct 23 09:17:17 2021
-
-@author: Estevao
-"""
-
 import sys
 sys.path.append('../src/')
 

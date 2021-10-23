@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Oct 23 11:10:52 2021
 
-@author: Estevao
-"""
 import numpy as np
 
 def limiar(palavra, lista, limiar):
