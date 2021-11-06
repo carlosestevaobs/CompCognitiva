@@ -1,28 +1,27 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Nov 05 11:10:52 2021
 
-import numpy as np
+@author: Estevao / Humberto Bezerra
 
+"""    
 def limiar(palavra, lista, limiar):
-    lista = np.array(lista)
-    lista2 = []
-    posInicial = -1
-    for i in range(lista.shape[0]): 
-        if (palavra == lista[i]):
-            posInicial = i
-            break        
-    if (posInicial == -1):       
-        return lista2
-    else:    
-        if ((posInicial + limiar <= lista.shape[0]) and 
-            (posInicial - limiar >= 0)):   
-            for i in range(posInicial - limiar, posInicial):                 
-                 lista2.append(lista[i])
-             
-            for i in range(posInicial + 1, (posInicial + 1 + limiar)):             
-                lista2.append(lista[i])
-                
-           
-           
-   
-        
-    return lista2
     
+    lista_limiar = []
+    indices_busca = lambda p,l: [i for i,e in enumerate(l) if e.lower().strip() == p] 
+    
+    limiar, palavra = int(limiar), str(palavra).lower().strip()
+
+    for indice in indices_busca(palavra, lista):
+
+        inicio = 0 if (limiar > indice) else (indice-limiar)
+        
+        lista_esq_indice = lista[inicio:indice]
+        lista_dir_indice = lista[(indice+1):(indice+limiar+1)]
+        
+        lista_indice = lista_esq_indice + lista_dir_indice
+        lista_limiar.extend([i for i in lista_indice if i not in lista_limiar and \
+                                                        i != palavra])
+    
+    return lista_limiar   
