@@ -7,4 +7,4 @@ No projeto que está sendo desenvolvido utilizamos um padrão de pastas para org
 * Códigos de testes estão localizados na pasta `test_app`, no qual ficará exemplos de como utilizar as funções implementadas.
 * Documentos relacionados ficarão na pasta `document`, onde ficaram os documentos relacionados ao projeto (por exemplo, lista de exercícios)
 
-<img src='https://user-images.githubusercontent.com/34108133/139968635-3c72c896-175f-49ba-8f52-d7b0f1143e05.png' width='300' />
+c72c896-175f-49ba-8f52-d7b0f1143e05.png' width='300' />
