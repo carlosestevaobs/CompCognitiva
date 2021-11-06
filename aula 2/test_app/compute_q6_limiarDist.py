@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../src/')
 
-from q6_limiarDist import limiar;
+from q6_limiarDist import limiar
 import argparse
 
 def main():    
