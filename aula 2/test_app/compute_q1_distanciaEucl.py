@@ -19,7 +19,8 @@ def main():
     pont1 = args['pont1']
     pont2 = args['pont2']    
   
-    calcDistEucl(pont1, pont2)
-  
+    distancia = calcDistEucl(pont1, pont2)
+    print("A distância entre os dois pontos é " + str(distancia))
+
 if __name__ == '__main__': 
     main()

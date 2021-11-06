@@ -14,8 +14,10 @@ matriz = matriz compelta
 coordenada_central: coordenada central da roi
 tamanho_matriz: tamanho da roi
 '''
-
-coordenada_central= 5,5
-tamanho_matriz = 3,3
-resultado = região_matriz(matriz_teste, coordenada_central, tamanho_matriz)
-print(resultado)
+def main():
+    coordenada_central= 5,5
+    tamanho_matriz = 3,3
+    resultado = região_matriz(matriz_teste, coordenada_central, tamanho_matriz)
+    print(resultado)
+if __name__ == '__main__':
+    main()

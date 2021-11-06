@@ -9,4 +9,4 @@ def calcDistEucl(p1, p2):
     distancia = raiz(somatorio((p1-p2)^2))
     ''' 
     distancia = np.sqrt(np.sum(np.square(p1-p2)))
-    print("A distância entre os dois pontos é " + str(distancia))
+    return distancia

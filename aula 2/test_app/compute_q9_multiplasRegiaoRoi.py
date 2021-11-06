@@ -15,8 +15,11 @@ matriz = matriz compelta
 list_coordenadas: lista de coordenadas central da roi
 tamanho_matriz: tamanho das rois
 '''
+def main():
+    list_coordenadas = [[3,3],[5,5],[2,3]]
+    tamanho_matriz = 3,3
+    resultado = multiplas_roi(matriz_teste, list_coordenadas, tamanho_matriz)
+    print(resultado)
 
-list_coordenadas = [[3,3],[5,5],[2,3]]
-tamanho_matriz = 3,3
-resultado = multiplas_roi(matriz_teste, list_coordenadas, tamanho_matriz)
-print(resultado)
+if __name__ == '__main__':
+    main()

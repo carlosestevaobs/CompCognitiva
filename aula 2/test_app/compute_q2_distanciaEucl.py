@@ -11,10 +11,7 @@ def main():
                     help = 'primeiro ponto')
     
     ap.add_argument('-lista', '--lp',
-                    default = [[19, 12, 19, 47], 
-                               [8, 2, 9, 7], 
-                               [5, 12, 8, 7], 
-                               [1, 12, 5, 47]],
+                    default = [[19, 12, 19, 47],[8, 2, 9, 7],[5, 12, 8, 7],[1, 12, 5, 47]],
                     help = 'segundo ponto')    
     
     args = vars(ap.parse_args())
@@ -22,6 +19,7 @@ def main():
     listaPontos = args['lp']    
   
     PontoMaisProximo = calcDistEucl(ponto1, listaPontos)
-  
+    print("O ponto mais próximo é " + str(PontoMaisProximo))
+
 if __name__ == '__main__': 
     main()
