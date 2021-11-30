@@ -1,4 +1,4 @@
-from utils import limiarizar
+from src.utils import limiarizar
 import numpy as np
 import argparse
 

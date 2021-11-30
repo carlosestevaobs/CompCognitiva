@@ -1,4 +1,4 @@
-from utils import remove_elementos_repetidos
+from src.utils import remove_elementos_repetidos
 
 lista = [1,1,2,2,"maria","maria","pedro", "pedro", 1.2, 1.2]
 

@@ -1,4 +1,4 @@
-from utils import calcDistEuclList
+from src.utils import calcDistEuclList
 import argparse
 
 def main():    

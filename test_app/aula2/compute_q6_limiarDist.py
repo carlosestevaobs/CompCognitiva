@@ -1,4 +1,4 @@
-from utils import limiar
+from src.utils import limiar
 import argparse
 
 def main():    

@@ -1,4 +1,4 @@
-from utils import contar
+from src.utils import contar
 import argparse
 
 def main():    
