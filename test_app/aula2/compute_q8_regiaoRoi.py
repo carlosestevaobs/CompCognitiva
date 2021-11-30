@@ -1,4 +1,4 @@
-from utils import regiao_matriz
+from src.utils import regiao_matriz
 import numpy as np
 #matriz_exemplo
 matriz_teste = np.array([[1, 2, 3, 4,17,26,60],

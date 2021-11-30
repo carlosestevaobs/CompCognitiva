@@ -1,4 +1,4 @@
-from utils import multiplas_roi
+from src.utils import multiplas_roi
 import numpy as np
 #matriz_exemplo
 matriz_teste = np.array([[1, 2, 3, 4,17,26,60],

@@ -1,4 +1,4 @@
-from utils import procurar
+from src.utils import procurar
 import argparse
 
 def main():    
