@@ -19,13 +19,12 @@ def remove_stopwords(list_content):
     '''
      list_content_ts = []
      for i in range(len(list_content)):
-         # print(list_pre_exemplo[i])
-         for sentencas in list_content[i]:
-             texto = list_content[i].split()
-             for token in texto:
-                 if token not in stopwords_nltk:
-                     list_content_ts.append(token)
+        texto = list_content[i].split()
+        for token in texto:
+            if token not in stopwords_nltk:
+                list_content_ts.append(token)
      resultado = ' '.join(list_content_ts)
+
      return resultado
 
 def tokenizacao(list_content):

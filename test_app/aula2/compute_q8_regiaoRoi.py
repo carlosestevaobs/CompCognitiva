@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, '../../')
 from src.utils import regiao_matriz
 import numpy as np
 #matriz_exemplo
