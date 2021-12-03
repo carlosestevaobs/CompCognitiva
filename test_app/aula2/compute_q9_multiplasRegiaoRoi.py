@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, '../../')
 from src.utils import multiplas_roi
 import numpy as np
 #matriz_exemplo

@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, '../../')
 from src.utils import limiarizar
 import numpy as np
 import argparse
