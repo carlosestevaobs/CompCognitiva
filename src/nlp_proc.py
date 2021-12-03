@@ -1,4 +1,5 @@
 import nltk
+import stanza
 
 def lower_case(list_content):
     '''
@@ -38,3 +39,21 @@ def tokenizacao(list_content):
         list_content_tk.append(setenca_token)
 
     return list_content_tk
+
+
+def lematize_stanza(list_pre):
+    '''
+   :param list_pre: lista dos conteúdos dos arquivos tokenizado, stopwords removidas e letras em minusculo
+   :return: lista dos conteúdos lematizados via lib stanza (list_pre_proc)
+   '''
+    texto = str(list_pre)
+    nlp = stanza.Pipeline(lang='pt')
+    doc = nlp(texto)
+
+    texto_lematize_stanza = []
+    for i in doc.sentences:
+        for word in i.words:
+            # print(word.lemma)
+            texto_lematize_stanza.append(word.lemma)
+    resultado = ' '.join(texto_lematize_stanza)
+    return resultado
