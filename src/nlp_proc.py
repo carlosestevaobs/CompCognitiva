@@ -1,5 +1,6 @@
 import nltk
 import stanza
+from NLPyPort.FullPipeline import *
 
 def lower_case(list_content):
     '''
@@ -57,3 +58,22 @@ def lematize_stanza(list_pre):
             texto_lematize_stanza.append(word.lemma)
     resultado = ' '.join(texto_lematize_stanza)
     return resultado
+
+def lematize_NLPyPort(list_pre):
+      '''
+     :param list_pre: lista dos conteúdos dos arquivos tokenizado, stopwords removidas e letras em minusculo
+     :return: lista dos conteúdos lematizados via lib stanza (list_manual)
+     '''
+      options = {
+          "tokenizer": True,
+          "pos_tagger": True,
+          "lemmatizer": True,
+          "entity_recognition": True,
+          "np_chunking": True,
+          "pre_load": False,
+          "string_or_array": True
+      }
+
+      text = new_full_pipe(list_pre, options=options)
+      resultado = text.lemas
+      return resultado
