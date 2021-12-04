@@ -79,3 +79,49 @@ def lematize_NLPyPort(list_pre):
       text = new_full_pipe(list_pre, options=options)
       resultado = text.lemas
       return resultado
+
+
+def extract_pdf(file = None):
+     '''
+     :param list_pre: arquivo a ser extraido
+     :return: lista com o conteúdo
+     '''
+     import fitz
+     import traceback
+     import pathlib
+
+     content = []
+     try:
+         cover = str.maketrans({chr(10): '', chr(9): ''})
+         dir = f'../document/NLP/{file}' if file else '../document/NLP/texto1.pdf'
+         fp = pathlib.Path(dir)
+         content = [p.get_text().translate(cover)  for p in fitz.open(fp)]
+
+     except Exception as e:
+         content = []
+         print(f"{type(e).__name__} at line {e.__traceback__.tb_lineno} of {__file__}: {e}")
+
+     return content
+
+
+
+def extract_pdf_all():
+     '''
+     :param list_pre: arquivo a ser extraido
+     :return: lista com o conteúdo de 3 arquivos, se não encontrado posição exite mas vazia
+     '''
+     content_all = []
+     for i in range(3):
+         file = f'texto{(i+1)}.pdf'
+         content = extract_pdf(file)
+         content_all.append(content)
+
+     return content_all
+
+
+if __name__ == '__main__':
+    lista = extract_pdf_all()
+    for i,p in enumerate(lista):
+        print('**'*20,f'        Conteúdo do texto{i+1}.pdf        ','**'*20)
+        print(p)
+        print('**'*60)
