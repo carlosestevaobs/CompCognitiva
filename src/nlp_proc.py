@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import nltk
 import stanza
 from NLPyPort.FullPipeline import *
@@ -48,6 +49,7 @@ def lematize_stanza(list_pre):
    :return: lista dos conteúdos lematizados via lib stanza (list_pre_proc)
    '''
     texto = str(list_pre)
+    stanza.download('pt')
     nlp = stanza.Pipeline(lang='pt')
     doc = nlp(texto)
 
