@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import string
+import csv
+import re
 import nltk
 import stanza
 from NLPyPort.FullPipeline import *
@@ -14,7 +17,7 @@ def lower_case(list_content):
         list_lower.append(setenca)
     return list_lower
 
-stopwords_nltk = nltk.corpus.stopwords.words('portuguese')
+stopwords_nltk = nltk.corpus.stopwords.words('portuguese') + list(string.punctuation)
 def remove_stopwords(list_content):
      '''
     :param list_content_tk: lista dos conteúdos
@@ -25,7 +28,11 @@ def remove_stopwords(list_content):
         texto = list_content[i].split()
         for token in texto:
             if token not in stopwords_nltk:
-                list_content_ts.append(token)
+                #result = re.sub('[^a-zA-Z]+', '', token)
+                remove_numbers = re.sub(r'[0-9]+', '', token)
+                remove_punctuation = re.compile('[%s]' % re.escape(string.punctuation  + '—'))
+                result = remove_punctuation.sub(u'', remove_numbers)
+                list_content_ts.append(result)
      resultado = ' '.join(list_content_ts)
 
      return resultado
@@ -48,18 +55,22 @@ def lematize_stanza(list_pre):
    :param list_pre: lista dos conteúdos dos arquivos tokenizado, stopwords removidas e letras em minusculo
    :return: lista dos conteúdos lematizados via lib stanza (list_pre_proc)
    '''
-    texto = str(list_pre)
+    #texto = str(list_pre)
     stanza.download('pt')
-    nlp = stanza.Pipeline(lang='pt')
-    doc = nlp(texto)
+    nlp = stanza.Pipeline(lang='pt',tokenize_pretokenized=True,use_gpu= True)
+    list_doc = []
+    for texto in list_pre:
+        doc = nlp(texto)
+        list_doc.append(doc)
 
     texto_lematize_stanza = []
-    for i in doc.sentences:
-        for word in i.words:
-            # print(word.lemma)
-            texto_lematize_stanza.append(word.lemma)
-    resultado = ' '.join(texto_lematize_stanza)
-    return resultado
+    for doc in list_doc:
+        for i in doc.sentences:
+            for word in i.words:
+                # print(word.lemma)
+                texto_lematize_stanza.append(word.lemma)
+        #resultado = ' '.join(texto_lematize_stanza)
+    return texto_lematize_stanza
 
 def lematize_NLPyPort(list_pre):
       '''
@@ -78,6 +89,7 @@ def lematize_NLPyPort(list_pre):
 
       text = new_full_pipe(list_pre, options=options)
       resultado = text.lemas
+      resultado = [i for i in resultado if i.strip()!='EOS']
       return resultado
 
 
@@ -126,3 +138,12 @@ if __name__ == '__main__':
         print('**'*20,f'        Conteúdo do texto{i+1}.pdf        ','**'*20)
         print(p)
         print('**'*60)
+
+def createCSV(lista):
+
+    cabecalho = ['doc', 'token', 'tf', 'df', 'idf', 'tf-idf']
+
+    with open('base.csv', 'w', newline='', encoding='utf-16') as conteudo:
+        write = csv.writer(conteudo)
+        write.writerow(cabecalho)
+        write.writerows(lista)
