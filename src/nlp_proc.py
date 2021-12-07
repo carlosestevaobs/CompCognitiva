@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import string
 import csv
+import collections
 import re
 import nltk
+import numpy as np
 import stanza
 from NLPyPort.FullPipeline import *
 
@@ -130,8 +132,6 @@ def extract_pdf_all(pathFile = '/'):
 
      return content_all
 
-
-
 if __name__ == '__main__':
     lista = extract_pdf_all()
     for i,p in enumerate(lista):
@@ -147,3 +147,35 @@ def createCSV(lista):
         write = csv.writer(conteudo)
         write.writerow(cabecalho)
         write.writerows(lista)
+
+def df(list_pre_proc):
+  '''
+  :param list_pre_proc: lista dos conteúdos pré processados
+  :retun: lista de tuplas com a palavra e seu valor df calculado(list_value_df)
+  '''
+
+  list_df = {}
+  for indice in range(len(list_pre_proc)):
+      for i in list_pre_proc[indice]:
+          for word in i:
+              if word not in list_df.keys():
+                  list_df[word] = 1
+              else:
+                  list_df[word] += 1
+
+  return list_df
+
+def idf(list_df, list_pre_proc):
+    '''
+    :param list_pre_proc: lista dos conteúdos pré processados
+    :param list_df: lista de document frequency
+    :retun: lista de tuplas com a palavra e seu valor idf calculado(list_idf)
+    '''
+    list_idf = list_df
+    for i in list_df:
+        df = list_df[i]
+        q_documento = len(list_pre_proc)
+        idf = np.log(q_documento / (df+1))
+        list_idf[i] = idf
+    return list_idf
+

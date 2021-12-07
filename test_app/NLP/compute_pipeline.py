@@ -4,7 +4,7 @@ sys.path.insert(1,'../../document/NLP/')
 
 from src.nlp_proc import extract_pdf_all
 from src.nlp_proc import lower_case, remove_stopwords, tokenizacao
-from src.nlp_proc import lematize_stanza, lematize_NLPyPort
+from src.nlp_proc import lematize_stanza, lematize_NLPyPort, df, idf
 
 
 if __name__ == '__main__':
@@ -28,7 +28,10 @@ if __name__ == '__main__':
             list_element_sentenca_stanza.append(lematize_stanza(senteca))
         list_stanza.append(list_element_sentenca_stanza)
         lista_manual.append(list_element_sentenca_manual)
-    print(len(lista_tokenizada), lista_tokenizada[2])
-    print(len(list_stanza), list_stanza[2])
-    print(len(lista_manual), lista_manual[2])
+
+    list_df_stanza = df(list_stanza)
+    list_df_manual = df(lista_manual)
+    list_idf_stanza = idf(list_df_stanza,list_stanza)
+    list_idf_manual = idf(list_df_manual,lista_manual)
+
 
