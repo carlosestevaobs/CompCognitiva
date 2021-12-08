@@ -139,6 +139,26 @@ if __name__ == '__main__':
         print(p)
         print('**'*60)
 
+
+def ordena_list(list_pre_proc):
+    list_1 = []
+    list_2 = []
+    list_3 = []
+    for aux, elemento in enumerate(list_pre_proc):
+        for i in elemento:
+            for j in i:
+                if aux == 0:
+                    list_1.append(j)
+                if aux == 1:
+                    list_2.append(j)
+                if aux == 2:
+                    list_3.append(j)
+    list_1 = [' '.join(list_1)]
+    list_2 = [' '.join(list_2)]
+    list_3 = [' '.join(list_3)]
+
+    return list_1, list_2, list_3
+
 def createCSV(lista):
 
     cabecalho = ['doc', 'token', 'tf', 'df', 'idf', 'tf-idf']
@@ -153,15 +173,14 @@ def df(list_pre_proc):
   :param list_pre_proc: lista dos conteúdos pré processados
   :retun: lista de tuplas com a palavra e seu valor df calculado(list_value_df)
   '''
-
   list_df = {}
   for indice in range(len(list_pre_proc)):
-      for i in list_pre_proc[indice]:
-          for word in i:
-              if word not in list_df.keys():
-                  list_df[word] = 1
-              else:
-                  list_df[word] += 1
+      doc = list_pre_proc[indice].split()
+      for word in doc:
+          if word not in list_df.keys():
+              list_df[word] = 1
+          else:
+              list_df[word] += 1
 
   return list_df
 
@@ -175,7 +194,7 @@ def idf(list_df, list_pre_proc):
     for i in list_df:
         df = list_df[i]
         q_documento = len(list_pre_proc)
-        idf = np.log(q_documento / (df+1))
+        idf = np.log((q_documento / df)+1)
         list_idf[i] = idf
     return list_idf
 
