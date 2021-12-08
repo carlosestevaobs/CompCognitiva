@@ -8,3 +8,14 @@ Componentes do squad 3 :
 * Geraldo Barbosa
 * Humberto Bezerra
 * Jeferson Soares
+
+## Orientação: Sequência de Comandos para executar o pipeline NLP
+```
+1. git clone https://github.com/carlosestevaobs/CompCognitiva.git
+2. cd CompCognitiva
+3. virtualenv .venv
+4. source .venv/bin/activate
+5. pip install -r requirements.txt
+6. cd test_app/NLP/
+7. python compute_pipeline.py
+```
