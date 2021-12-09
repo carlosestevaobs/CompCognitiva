@@ -5,7 +5,6 @@ Este repositório está relacionado às entregas das atividades do squad 3 do cu
 Componentes do squad 3 :
 
 * Carlos Estevão
-* Geraldo Barbosa
 * Humberto Bezerra
 * Jeferson Soares
 
