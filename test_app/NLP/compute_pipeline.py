@@ -3,8 +3,8 @@ sys.path.insert(0, '../../')
 sys.path.insert(1,'../../document/NLP/')
 
 from src.nlp_proc import extract_pdf_all
-from src.nlp_proc import lower_case, remove_stopwords, tokenizacao
-from src.nlp_proc import lematize_stanza, lematize_NLPyPort, df, idf, ordena_list
+from src.nlp_proc import lower_case, remove_stopwords, tokenizacao, tf, tf_idf
+from src.nlp_proc import lematize_stanza, lematize_NLPyPort, df, idf, ordena_list, top_five_tfidf
 
 
 if __name__ == '__main__':
@@ -37,7 +37,20 @@ if __name__ == '__main__':
 
     list_df_stanza = df(list_final_stanza)
     list_df_manual = df(list_final_manual)
+
     list_idf_stanza = idf(list_df_stanza,list_final_stanza)
     list_idf_manual = idf(list_df_manual,list_final_manual)
 
+    tf_stanza = tf(list_final_stanza)
+    tf_manual = tf(list_final_manual)
 
+    tf_idf_stanza = tf_idf(tf_stanza, list_idf_stanza)
+    tf_idf_manual = tf_idf(tf_manual, list_idf_manual)
+
+    top_five_stanza = top_five_tfidf(tf_idf_stanza)
+    top_five_manual = top_five_tfidf(tf_idf_manual)
+
+    print("--Top Five Manual--")
+    print(top_five_manual)
+    print("Top five Stanza")
+    print(top_five_stanza)

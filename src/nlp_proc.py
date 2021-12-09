@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import string
 import csv
+from collections import OrderedDict
 import collections
 import re
 import nltk
@@ -198,3 +199,45 @@ def idf(list_df, list_pre_proc):
         list_idf[i] = idf
     return list_idf
 
+def tf(list_pre_proc):
+    aux = [0,0,0]
+    for count in range(3):
+        doc = list_pre_proc[count].split()
+        aux[count] = df(doc)
+
+    tf = {}
+    list_total = list_pre_proc[0] + list_pre_proc[1] + list_pre_proc[2]
+
+    list_total = list(set(list_total.split()))
+    for e in list_total:
+        x = [0,0,0]
+        for i in range(len(aux)):
+            if e in list(aux[i].keys()):
+                x[i] = (aux[i][e] / len(list_pre_proc[i].split()))
+        tf.update({e:x})
+    return tf
+
+def tf_idf(tf, idf):
+    tf_idf = {}
+    for k, v in tf.items():
+        if k in idf.keys():
+            aux = idf[k]
+        else:
+            aux = 0
+        for i in range(len(v)):
+            v[i] = aux * v[i]
+        tf_idf.update({k: v})
+    return tf_idf
+
+
+def top_five_tfidf(tf_idf):
+    dic_total = {}
+    for k, v in tf_idf.items():
+        aux = sum(v)
+        dic_total.update({k: aux})
+    x = OrderedDict(sorted(dic_total.items(), key=lambda x: x[1], reverse=True))
+    resulta_ordenado = []
+    for e in x.keys():
+        resulta_ordenado.append((e, x[e]))
+
+    return resulta_ordenado[0:5]
