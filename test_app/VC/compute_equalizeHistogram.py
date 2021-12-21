@@ -1,23 +1,15 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path.insert(0, '../../')
-from src.vc_proc import equalizeHistogram
-import argparse
-import cv2
+from src.vc_proc import equalizeHistogram, Gaussian, borderDetection
 
-def main():    
-    ap  = argparse.ArgumentParser()
-    ap.add_argument('-imagem', '--img',
-                    default = "../../data_especular_crop/train_images/confluente/0.png",
-                    help = 'primeiro ponto')
-    
 
-    args = vars(ap.parse_args())
-    url = args['img']
-    imagemEq = equalizeHistogram(url)
-    print(imagemEq)
-    cv2.imwrite('equalizada.png',imagemEq)
-   
+url = "../../src/data_especular_crop/"
+urlN = "../../data_especular_crop-equalize/"
+equalizeHistogram(url, urlN)
 
-if __name__ == '__main__': 
-    main()
+"""urlGaussian = "../../data_especular_crop-gaussian/"
+Gaussian(urlN, urlGaussian)
+
+urlBorder = "../../data_especular_crop-border/"
+borderDetection(urlGaussian, urlBorder)"""
