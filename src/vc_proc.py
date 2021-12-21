@@ -14,16 +14,11 @@ from sklearn.metrics import confusion_matrix, precision_score, recall_score, con
 
 import cv2
 import os
-import numpy as np
-from glob import glob
 import matplotlib.pyplot as plt
 from keras.applications.inception_v3 import preprocess_input
 from keras.layers import Conv2D, MaxPooling2D, Flatten, Dropout, Dense
 from keras.models import Sequential
-from keras.callbacks import ModelCheckpoint,EarlyStopping
-import seaborn as sns
-from sklearn.metrics import precision_score, recall_score, confusion_matrix, classification_report, accuracy_score, f1_score
-from keras.preprocessing.image import ImageDataGenerator
+
 
 def equalizeHistogram(url, urlN):
     os.mkdir(urlN)
