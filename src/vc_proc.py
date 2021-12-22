@@ -126,7 +126,7 @@ def treinarCNN(training_dir, validation_dir, test_dir):
                                   steps_per_epoch=training_generator.n // batchSize,
                                   validation_data=validation_generator,
                                   validation_steps=validation_generator.n // batchSize,
-                                  epochs=1,
+                                  epochs=100,
                                   verbose=1,
                                   callbacks=[checkpointer])
 
@@ -183,7 +183,7 @@ def treinarVGG(training_dir, validation_dir, test_dir):
 
     history = model.fit(training_generator,
                         steps_per_epoch=training_generator.n // batchSize,
-                        epochs=1,
+                        epochs=100,
                         validation_data=validation_generator,
                         validation_steps=validation_generator.n // batchSize,
                         callbacks=[checkpointer])
